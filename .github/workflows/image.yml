@@ -28,5 +28,14 @@ jobs:
         name: build the image
         run: |
           docker buildx build --push \
+            --build-arg JDK_TAG=8 \
             --tag realstraw/sbt:latest \
+            --platform linux/amd64,linux/arm64/v8 .
+          docker buildx build --push \
+            --build-arg JDK_TAG=8 \
+            --tag realstraw/sbt:jdk8 \
+            --platform linux/amd64,linux/arm64/v8 .
+          docker buildx build --push \
+            --build-arg JDK_TAG=11 \
+            --tag realstraw/sbt:jdk11 \
             --platform linux/amd64,linux/arm64/v8 .
